@@ -1,30 +1,36 @@
+from __future__ import annotations
+
 from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="UOPR API")
+from app.routers import appointments, auth, billing, messaging, monitoring, patients
 
-_items: list[dict[str, str]] = []
-_next_id = 1
+app = FastAPI(
+    title="UPCHAR API",
+    description="Enterprise healthcare platform API (demo)",
+    version="0.2.0",
+)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://0.0.0.0:3000",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-class ItemCreate(BaseModel):
-    name: str
+app.include_router(auth.router, prefix="/api")
+app.include_router(appointments.router, prefix="/api")
+app.include_router(patients.router, prefix="/api")
+app.include_router(billing.router, prefix="/api")
+app.include_router(messaging.router, prefix="/api")
+app.include_router(monitoring.router, prefix="/api")
 
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok"}
-
-
-@app.get("/items")
-def list_items() -> list[dict[str, str]]:
-    return _items
-
-
-@app.post("/items", status_code=201)
-def create_item(payload: ItemCreate) -> dict[str, str]:
-    global _next_id
-    item = {"id": str(_next_id), "name": payload.name}
-    _next_id += 1
-    _items.append(item)
-    return item
+    return {"status": "ok", "service": "upchar-api"}
