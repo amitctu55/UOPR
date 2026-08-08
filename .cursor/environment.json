@@ -1,0 +1,15 @@
+{
+  "name": "UOPR",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "user": "ubuntu",
+  "install": ".cursor/scripts/install.sh",
+  "ports": [8000],
+  "terminals": [
+    {
+      "name": "api",
+      "command": ".cursor/scripts/start-dev.sh"
+    }
+  ]
+}
