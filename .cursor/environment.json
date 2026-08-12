@@ -1,15 +1,19 @@
 {
-  "name": "UOPR",
+  "name": "UPCHAR",
   "build": {
     "dockerfile": "Dockerfile"
   },
   "user": "ubuntu",
   "install": ".cursor/scripts/install.sh",
-  "ports": [8000],
+  "ports": [3000, 8000],
   "terminals": [
     {
       "name": "api",
       "command": ".cursor/scripts/start-dev.sh"
+    },
+    {
+      "name": "web",
+      "command": ".cursor/scripts/start-web.sh"
     }
   ]
 }

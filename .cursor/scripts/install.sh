@@ -12,3 +12,7 @@ source .venv/bin/activate
 
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+
+if [[ -f web/package.json ]]; then
+  npm --prefix web install
+fi

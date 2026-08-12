@@ -1,26 +1,56 @@
-# UOPR
+# UPCHAR — Enterprise Healthcare Platform
 
-A minimal Python API scaffold for the UOPR project.
+Secure, scalable healthcare management for patients, doctors, hospitals, and administrators.
 
-## Development
+## Stack
 
-Install dependencies:
+| Layer | Tech |
+|-------|------|
+| Frontend | Next.js 14, React 18, TypeScript, Tailwind CSS (`web/`) |
+| State | Zustand (auth/theme), TanStack React Query |
+| Backend | FastAPI (`app/`) with JWT-style session tokens + MFA demo |
+| Charts | Recharts |
+
+## Quick start
 
 ```bash
+# Install Python + Node deps
 .cursor/scripts/install.sh
+
+# Terminal A — API on :8000
+.cursor/scripts/start-dev.sh
+
+# Terminal B — Web on :3000
+.cursor/scripts/start-web.sh
 ```
 
-Run the API server:
+Or manually:
 
 ```bash
-.cursor/scripts/start-dev.sh
+source .venv/bin/activate && uvicorn app.main:app --reload --port 8000
+npm --prefix web run dev
 ```
 
-Run tests:
+## Demo login
+
+1. Open http://localhost:3000/login  
+2. Pick a **demo role**  
+3. Enter any **6-digit MFA code**  
+
+API docs: http://localhost:8000/docs  
+
+## Tests
 
 ```bash
 source .venv/bin/activate
 pytest
+npm --prefix web run lint
+npm --prefix web run build
 ```
 
-The API listens on port `8000`. Health check: `GET /health`.
+## App map
+
+- Landing `/`
+- Auth `/login` `/register` `/mfa` `/forgot-password` `/verify-email`
+- Dashboards `/dashboard/{patient,doctor,hospital,admin}`
+- Modules appointments, patients, telemedicine, EHR, billing, reports, settings, messages, monitoring
