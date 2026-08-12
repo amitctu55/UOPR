@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
 
-from app.data import PATIENTS, Patient
+from backend.data import PATIENTS, Patient
 
 router = APIRouter(prefix="/patients", tags=["patients"])
 

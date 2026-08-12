@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
-from app.data import MESSAGES, MessageThread
+from backend.data import MESSAGES, MessageThread
 
 router = APIRouter(prefix="/messages", tags=["messages"])
 

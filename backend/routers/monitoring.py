@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from app.data import ALERTS, DEPARTMENTS, HEALTH_TREND, SERVICES, Alert, ServiceStatus
+from backend.data import ALERTS, DEPARTMENTS, HEALTH_TREND, SERVICES, Alert, ServiceStatus
 
 router = APIRouter(prefix="/monitoring", tags=["monitoring"])
 

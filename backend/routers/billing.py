@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
 
-from app.data import INVOICES, Invoice
+from backend.data import INVOICES, Invoice
 
 router = APIRouter(prefix="/billing", tags=["billing"])
 

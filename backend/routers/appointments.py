@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from fastapi import APIRouter, HTTPException
 
-from app.data import APPOINTMENTS, Appointment, AppointmentCreate
+from backend.data import APPOINTMENTS, Appointment, AppointmentCreate
 
 router = APIRouter(prefix="/appointments", tags=["appointments"])
 
