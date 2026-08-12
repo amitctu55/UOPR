@@ -4,53 +4,45 @@ Secure, scalable healthcare management for patients, doctors, hospitals, and adm
 
 ## Stack
 
-| Layer | Tech |
-|-------|------|
-| Frontend | Next.js 14, React 18, TypeScript, Tailwind CSS (`web/`) |
-| State | Zustand (auth/theme), TanStack React Query |
-| Backend | FastAPI (`app/`) with JWT-style session tokens + MFA demo |
-| Charts | Recharts |
+- **Frontend:** Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS
+- **State:** Zustand (auth + theme), TanStack React Query
+- **Charts:** Recharts
+- **Icons:** Lucide (line icons)
 
-## Quick start
+## Getting started
 
 ```bash
-# Install Python + Node deps
-.cursor/scripts/install.sh
-
-# Terminal A — API on :8000
-.cursor/scripts/start-dev.sh
-
-# Terminal B — Web on :3000
-.cursor/scripts/start-web.sh
+npm install
+npm run dev
 ```
 
-Or manually:
-
-```bash
-source .venv/bin/activate && uvicorn app.main:app --reload --port 8000
-npm --prefix web run dev
-```
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Demo login
 
-1. Open http://localhost:3000/login  
-2. Pick a **demo role**  
-3. Enter any **6-digit MFA code**  
-
-API docs: http://localhost:8000/docs  
-
-## Tests
-
-```bash
-source .venv/bin/activate
-pytest
-npm --prefix web run lint
-npm --prefix web run build
-```
+1. Go to **Log in**
+2. Choose a **demo role** (Patient, Doctor, Hospital Admin, System Admin)
+3. Continue and enter any **6-digit MFA code**
 
 ## App map
 
-- Landing `/`
-- Auth `/login` `/register` `/mfa` `/forgot-password` `/verify-email`
-- Dashboards `/dashboard/{patient,doctor,hospital,admin}`
-- Modules appointments, patients, telemedicine, EHR, billing, reports, settings, messages, monitoring
+| Area | Routes |
+|------|--------|
+| Landing | `/` |
+| Auth | `/login`, `/register`, `/mfa`, `/forgot-password`, `/verify-email` |
+| Role dashboards | `/dashboard/patient`, `/doctor`, `/hospital`, `/admin` |
+| Modules | `/dashboard/appointments`, `/patients/[id]`, `/telemedicine/[id]`, `/ehr/[id]`, `/billing`, `/reports`, `/settings`, `/messages`, `/monitoring` |
+
+## Design
+
+- Typography: **Sora** (display) + **Figtree** (UI)
+- Palette: teal / care-green surfaces with coral / amber alerts
+- Light + dark mode (toggle in header)
+- Custom Tailwind components (no third-party UI kit)
+
+## Scripts
+
+- `npm run dev` — development server
+- `npm run build` — production build
+- `npm run start` — serve production build
+- `npm run lint` — ESLint
